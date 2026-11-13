@@ -1,3 +1,10 @@
+/*
+ * Modified in the non-official Chinese fork "沃莱单词·中文分支" (voclet-zh-branch).
+ * Changes: the flashcard front shows the English word (read aloud via TTS) and the back
+ * shows the Chinese meaning; a delete button sits to the left of Correct; deleting plays
+ * a throw-into-bin exit animation. See the git history for the full diff.
+ * Original: Copyright 2024 Marc Wiest, licensed under Apache License 2.0.
+ */
 package com.github.mwiest.voclet.ui.practice
 
 import androidx.compose.animation.core.Animatable
@@ -21,6 +28,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Flip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,11 +46,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -81,6 +93,7 @@ fun FlashcardPracticeScreen(
         onFlip = { viewModel.flipCard() },
         onCorrect = { viewModel.markCorrect() },
         onIncorrect = { viewModel.markIncorrect() },
+        onDelete = { viewModel.deleteCurrentWord() },
         onResetPractice = { viewModel.resetPractice() },
         onToggleTts = { viewModel.ttsDelegate.toggle() }
     )
@@ -107,6 +120,7 @@ fun FlashcardPracticeScreen(
     onFlip: () -> Unit,
     onCorrect: () -> Unit,
     onIncorrect: () -> Unit,
+    onDelete: () -> Unit = {},
     onResetPractice: () -> Unit = {},
     onToggleTts: () -> Unit = {}
 ) {
@@ -130,6 +144,7 @@ fun FlashcardPracticeScreen(
             onFlip = onFlip,
             onCorrect = onCorrect,
             onIncorrect = onIncorrect,
+            onDelete = onDelete,
             onToggleTts = onToggleTts
         )
     }
@@ -145,8 +160,37 @@ private fun FlashcardPracticeContent(
     onFlip: () -> Unit,
     onCorrect: () -> Unit,
     onIncorrect: () -> Unit,
+    onDelete: () -> Unit,
     onToggleTts: () -> Unit
 ) {
+    val currentPairId = uiState.wordPairs.getOrNull(uiState.currentCardIndex)?.id ?: -1L
+
+    // "Throw the card into the bin" animation. Keyed to the card id, so when the ViewModel
+    // swaps in the next word the transform is fresh and the new card never inherits the
+    // shrunken / faded state of the discarded one.
+    var isDeleting by remember { mutableStateOf(false) }
+    val exitProgress = remember(currentPairId) { Animatable(0f) }
+    val currentOnDelete by rememberUpdatedState(onDelete)
+    val density = LocalDensity.current
+    val dropDistancePx = remember(density) { with(density) { 160.dp.toPx() } }
+
+    LaunchedEffect(currentPairId) { isDeleting = false }
+
+    LaunchedEffect(isDeleting) {
+        if (isDeleting) {
+            exitProgress.snapTo(0f)
+            exitProgress.animateTo(
+                targetValue = 1f,
+                animationSpec = tween(
+                    durationMillis = 420,
+                    easing = CubicBezierEasing(0.4f, 0.0f, 0.2f, 1.0f)
+                )
+            )
+            // Remove the word only after it has visibly landed in the bin.
+            currentOnDelete()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -211,11 +255,17 @@ private fun FlashcardPracticeContent(
                             .fillMaxHeight(),
                         contentAlignment = Alignment.Center
                     ) {
-                        AnimatedFlashcard(
+                        // Front shows the target-language word (word2, e.g. English) so it can be
+                        // heard via TTS; flipping reveals the known-language meaning (word1).
+                        FlashcardStage(
+                            cardId = currentPair.id,
                             isFlipped = uiState.isFlipped,
-                            word1 = currentPair.word1,
-                            word2 = currentPair.word2,
-                            modifier = Modifier.fillMaxSize(CardPaneFraction)
+                            frontText = currentPair.word2,
+                            backText = currentPair.word1,
+                            cardModifier = Modifier.fillMaxSize(CardPaneFraction),
+                            isDeleting = isDeleting,
+                            progress = { exitProgress.value },
+                            dropDistancePx = dropDistancePx
                         )
                     }
 
@@ -228,9 +278,10 @@ private fun FlashcardPracticeContent(
                     ) {
                         ButtonArea(
                             isFlipped = uiState.isFlipped,
-                            onFlip = onFlip,
-                            onCorrect = onCorrect,
-                            onIncorrect = onIncorrect
+                            onFlip = { if (!isDeleting) onFlip() },
+                            onCorrect = { if (!isDeleting) onCorrect() },
+                            onIncorrect = { if (!isDeleting) onIncorrect() },
+                            onDelete = { if (!isDeleting) isDeleting = true }
                         )
                     }
                 }
@@ -242,20 +293,27 @@ private fun FlashcardPracticeContent(
                 ) {
                     Spacer(modifier = Modifier.height(1.dp))
 
-                    AnimatedFlashcard(
+                    // Front shows the target-language word (word2, e.g. English) so it can be
+                    // heard via TTS; flipping reveals the known-language meaning (word1).
+                    FlashcardStage(
+                        cardId = currentPair.id,
                         isFlipped = uiState.isFlipped,
-                        word1 = currentPair.word1,
-                        word2 = currentPair.word2,
-                        modifier = Modifier
+                        frontText = currentPair.word2,
+                        backText = currentPair.word1,
+                        cardModifier = Modifier
                             .fillMaxWidth(0.7f)
-                            .height(300.dp)
+                            .height(300.dp),
+                        isDeleting = isDeleting,
+                        progress = { exitProgress.value },
+                        dropDistancePx = dropDistancePx
                     )
 
                     ButtonArea(
                         isFlipped = uiState.isFlipped,
-                        onFlip = onFlip,
-                        onCorrect = onCorrect,
-                        onIncorrect = onIncorrect,
+                        onFlip = { if (!isDeleting) onFlip() },
+                        onCorrect = { if (!isDeleting) onCorrect() },
+                        onIncorrect = { if (!isDeleting) onIncorrect() },
+                        onDelete = { if (!isDeleting) isDeleting = true },
                         modifier = Modifier.padding(vertical = 32.dp)
                     )
                 }
@@ -264,15 +322,76 @@ private fun FlashcardPracticeContent(
     }
 }
 
+/**
+ * Wraps the flashcard with a small "throw into the bin" exit animation used when a word is
+ * deleted: the card shrinks, tilts and drops toward a trash icon, then fades out, while the
+ * icon gives a little bounce as it catches the word.
+ */
+@Composable
+private fun FlashcardStage(
+    cardId: Long,
+    isFlipped: Boolean,
+    frontText: String,
+    backText: String,
+    cardModifier: Modifier,
+    isDeleting: Boolean,
+    progress: () -> Float,
+    dropDistancePx: Float
+) {
+    Box(contentAlignment = Alignment.Center) {
+        AnimatedFlashcard(
+            cardId = cardId,
+            isFlipped = isFlipped,
+            word1 = frontText,
+            word2 = backText,
+            modifier = cardModifier.graphicsLayer {
+                val p = progress()
+                if (p > 0f) {
+                    val scale = 1f - 0.85f * p
+                    scaleX = scale
+                    scaleY = scale
+                    rotationZ = 20f * p
+                    translationY = dropDistancePx * p
+                    alpha = (1f - p * p * 1.1f).coerceIn(0f, 1f)
+                }
+            }
+        )
+
+        if (isDeleting) {
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.error,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .size(56.dp)
+                    .graphicsLayer {
+                        val p = progress()
+                        val fadeIn = (p / 0.15f).coerceIn(0f, 1f)
+                        val fadeOut = ((1f - p) / 0.15f).coerceIn(0f, 1f)
+                        alpha = fadeIn * fadeOut
+                        val bounce = Math.sin(p.toDouble() * Math.PI).toFloat()
+                        val s = 1f + 0.3f * bounce
+                        scaleX = s
+                        scaleY = s
+                    }
+            )
+        }
+    }
+}
+
 @Composable
 private fun AnimatedFlashcard(
+    cardId: Long,
     isFlipped: Boolean,
     word1: String,
     word2: String,
     modifier: Modifier = Modifier
 ) {
-    // Flip rotation animation
-    val flipRotation = remember { Animatable(0f) }
+    // Key the animation to the card id so every newly shown word starts face-up. Otherwise
+    // deleting a card while it is flipped keeps the 180-degree rotation and animates the
+    // *next* word back to 0 degrees, briefly revealing its translation (word2 / Chinese).
+    val flipRotation = remember(cardId) { Animatable(0f) }
 
     LaunchedEffect(isFlipped) {
         flipRotation.animateTo(
@@ -284,8 +403,9 @@ private fun AnimatedFlashcard(
         )
     }
 
-    // Card scale animation (subtle elevation effect)
-    val scaleValue = remember { Animatable(1f) }
+    // Card scale animation (subtle elevation effect). Reset for each new card too, so a flip
+    // interrupted by a delete does not leave the card stuck at a slightly enlarged scale.
+    val scaleValue = remember(cardId) { Animatable(1f) }
 
     LaunchedEffect(isFlipped) {
         if (isFlipped) {
@@ -351,6 +471,7 @@ private fun ButtonArea(
     onFlip: () -> Unit,
     onCorrect: () -> Unit,
     onIncorrect: () -> Unit,
+    onDelete: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -378,11 +499,27 @@ private fun ButtonArea(
                 )
             }
         } else {
-            // Correct and Incorrect buttons
+            // Correct and Incorrect buttons, with a delete button to the left of Correct
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                Button(
+                    onClick = onDelete,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                ) {
+                    Icon(
+                        Icons.Default.Delete,
+                        contentDescription = stringResource(id = R.string.delete),
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
                 Button(
                     onClick = onCorrect,
                     modifier = Modifier
