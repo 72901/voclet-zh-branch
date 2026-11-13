@@ -4,6 +4,13 @@
 
 <h1 align="center">Voclet</h1>
 
+> **沃莱单词 · 中文分支（非官方 fork）**
+>
+> 基于 [mwiest/voclet](https://github.com/mwiest/voclet)（Apache 2.0，Copyright 2024 Marc Wiest），与上游作者无关联。
+> 相对上游增加：简体中文界面（215 条字符串）、闪卡「英文朗读 → 翻中文」、删除按钮及「落入垃圾桶」动画、中文应用名「沃莱单词」。
+> 中文汉化已单独向上游提交 PR。
+
+
 A vocabulary learning app for Android, made for tablets and working on phones. Word lists are
 practised in four playful modes; lists can be typed, imported, or photographed from a workbook.
 No account, no server, no ads.
@@ -30,7 +37,8 @@ More screenshots, for phone and tablet, are in the
 - **Your data stays yours:** everything is stored on the device; lists export and share as
   `.voclet.json` files; pairs import from CSV.
 - **Thirteen languages** for word lists and for the app itself: English, German, French, Spanish,
-  Portuguese, Italian, Dutch, Polish, Swedish, Norwegian, Danish, Finnish, Hungarian.
+  Portuguese, Italian, Dutch, Polish, Swedish, Norwegian, Danish, Finnish, Hungarian. The user
+  interface is additionally available in Chinese.
 
 The full description of every screen is in [`docs/product.md`](docs/product.md).
 
