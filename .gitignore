@@ -16,6 +16,9 @@
 .cxx
 local.properties
 
+# Built APKs are distributed via GitHub Releases, not tracked in git
+*.apk
+
 # Keystore files
 *.keystore
 *.jks
