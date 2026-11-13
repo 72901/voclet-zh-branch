@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Voclet</string>
+    <string name="app_name">沃莱单词</string>
     <string name="settings">Settings</string>
     <string name="my_word_lists">Word lists</string>
     <string name="x_words">%1$d words</string>
