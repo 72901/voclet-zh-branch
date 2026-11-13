@@ -45,7 +45,7 @@ The same screen serves a new list and an existing one.
 - **Title.** A new list focuses it, and the pair rows appear only once there is a name.
 - **Languages.** Two pickers, "I know" and "I'm learning", with flags: English, Deutsch, Français,
   Español, Português, Italiano, Nederlands, Polski, Svenska, Norsk bokmål, Dansk, Suomi, Magyar, or
-  none. The same thirteen as the UI languages, all Latin script, so camera import can read them. A **swap** button exchanges the languages and word1/word2 in every pair.
+  none. All Latin script, so camera import can read them. The user interface is additionally available in Chinese. A **swap** button exchanges the languages and word1/word2 in every pair.
 - **Pairs.** Two fields per row, side by side on wide screens, stacked on phones. A star toggle and
   a delete button per row. An empty row is always kept at the end for the next pair.
 - **Saving.** Changes stay in memory until **Save**, which is enabled only when something changed
