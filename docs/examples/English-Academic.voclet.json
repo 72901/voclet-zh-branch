@@ -1,0 +1,263 @@
+{
+ "version": 1,
+ "exportedAt": 1794372000000,
+ "lists": [
+  {
+   "name": "English · Academic (示例词表)",
+   "language1": "en",
+   "language2": "en",
+   "pairs": [
+    {
+     "word1": "abandon",
+     "word2": "放弃；抛弃",
+     "starred": false
+    },
+    {
+     "word1": "abundant",
+     "word2": "丰富的；充裕的",
+     "starred": false
+    },
+    {
+     "word1": "accumulate",
+     "word2": "积累；积聚",
+     "starred": false
+    },
+    {
+     "word1": "adequate",
+     "word2": "足够的；适当的",
+     "starred": false
+    },
+    {
+     "word1": "ambiguous",
+     "word2": "模棱两可的",
+     "starred": false
+    },
+    {
+     "word1": "anticipate",
+     "word2": "预料；预期",
+     "starred": false
+    },
+    {
+     "word1": "arbitrary",
+     "word2": "任意的；武断的",
+     "starred": false
+    },
+    {
+     "word1": "assess",
+     "word2": "评估；评定",
+     "starred": false
+    },
+    {
+     "word1": "attribute",
+     "word2": "归因于；属性",
+     "starred": false
+    },
+    {
+     "word1": "coherent",
+     "word2": "连贯的；条理清楚的",
+     "starred": false
+    },
+    {
+     "word1": "compensate",
+     "word2": "补偿；弥补",
+     "starred": false
+    },
+    {
+     "word1": "comprehensive",
+     "word2": "全面的；综合的",
+     "starred": false
+    },
+    {
+     "word1": "constitute",
+     "word2": "构成；组成",
+     "starred": false
+    },
+    {
+     "word1": "contradict",
+     "word2": "反驳；与…矛盾",
+     "starred": false
+    },
+    {
+     "word1": "crucial",
+     "word2": "至关重要的",
+     "starred": false
+    },
+    {
+     "word1": "deliberate",
+     "word2": "故意的；深思熟虑的",
+     "starred": false
+    },
+    {
+     "word1": "diminish",
+     "word2": "减少；削弱",
+     "starred": false
+    },
+    {
+     "word1": "elaborate",
+     "word2": "详尽的；详细阐述",
+     "starred": false
+    },
+    {
+     "word1": "eliminate",
+     "word2": "消除；排除",
+     "starred": false
+    },
+    {
+     "word1": "empirical",
+     "word2": "经验的；实证的",
+     "starred": false
+    },
+    {
+     "word1": "enhance",
+     "word2": "提高；增强",
+     "starred": false
+    },
+    {
+     "word1": "explicit",
+     "word2": "明确的；清楚的",
+     "starred": false
+    },
+    {
+     "word1": "facilitate",
+     "word2": "促进；使便利",
+     "starred": false
+    },
+    {
+     "word1": "fluctuate",
+     "word2": "波动；起伏",
+     "starred": false
+    },
+    {
+     "word1": "fundamental",
+     "word2": "基本的；根本的",
+     "starred": false
+    },
+    {
+     "word1": "generate",
+     "word2": "产生；生成",
+     "starred": false
+    },
+    {
+     "word1": "hypothesis",
+     "word2": "假设；假说",
+     "starred": false
+    },
+    {
+     "word1": "implement",
+     "word2": "实施；执行",
+     "starred": false
+    },
+    {
+     "word1": "implication",
+     "word2": "含义；影响",
+     "starred": false
+    },
+    {
+     "word1": "inevitable",
+     "word2": "不可避免的",
+     "starred": false
+    },
+    {
+     "word1": "integrate",
+     "word2": "整合；融入",
+     "starred": false
+    },
+    {
+     "word1": "intrinsic",
+     "word2": "内在的；固有的",
+     "starred": false
+    },
+    {
+     "word1": "justify",
+     "word2": "证明…正当",
+     "starred": false
+    },
+    {
+     "word1": "legitimate",
+     "word2": "合法的；合理的",
+     "starred": false
+    },
+    {
+     "word1": "manipulate",
+     "word2": "操纵；操作",
+     "starred": false
+    },
+    {
+     "word1": "mitigate",
+     "word2": "减轻；缓和",
+     "starred": false
+    },
+    {
+     "word1": "notion",
+     "word2": "概念；观念",
+     "starred": false
+    },
+    {
+     "word1": "obscure",
+     "word2": "模糊的；使难以理解",
+     "starred": false
+    },
+    {
+     "word1": "perceive",
+     "word2": "察觉；认为",
+     "starred": false
+    },
+    {
+     "word1": "persistent",
+     "word2": "持续的；坚持不懈的",
+     "starred": false
+    },
+    {
+     "word1": "plausible",
+     "word2": "貌似合理的",
+     "starred": false
+    },
+    {
+     "word1": "prevalent",
+     "word2": "普遍的；流行的",
+     "starred": false
+    },
+    {
+     "word1": "profound",
+     "word2": "深刻的；深远的",
+     "starred": false
+    },
+    {
+     "word1": "reinforce",
+     "word2": "加强；强化",
+     "starred": false
+    },
+    {
+     "word1": "reluctant",
+     "word2": "不情愿的",
+     "starred": false
+    },
+    {
+     "word1": "substantial",
+     "word2": "大量的；实质的",
+     "starred": false
+    },
+    {
+     "word1": "sustain",
+     "word2": "维持；支撑",
+     "starred": false
+    },
+    {
+     "word1": "tolerate",
+     "word2": "容忍；耐受",
+     "starred": false
+    },
+    {
+     "word1": "underlying",
+     "word2": "潜在的；根本的",
+     "starred": false
+    },
+    {
+     "word1": "vulnerable",
+     "word2": "脆弱的；易受伤的",
+     "starred": false
+    }
+   ]
+  }
+ ]
+}
