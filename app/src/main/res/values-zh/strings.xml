@@ -1,0 +1,233 @@
+<resources>
+    <string name="app_name">Voclet</string>
+    <string name="settings">设置</string>
+    <string name="my_word_lists">词表</string>
+    <string name="x_words">%1$d 个单词</string>
+    <string name="select_all">全选</string>
+    <string name="add_word_list">添加词表</string>
+    <string name="new_word_list">新建词表</string>
+    <string name="practicing_on_x_lists">正在练习 %1$d 个词表</string>
+    <string name="x_total_words">（%1$d 个单词）</string>
+    <string name="all_words">全部</string>
+    <string name="hard_words_only">困难单词</string>
+    <string name="starred_pairs">已收藏</string>
+    <string name="flashcard_flip">闪卡翻面</string>
+    <string name="connect">连线</string>
+    <string name="fill_blanks">填空</string>
+    <string name="spell_it">拼写</string>
+    <string name="check">检查</string>
+    <string name="next">下一步</string>
+    <string name="match_pairs">配对</string>
+    <string name="spelling_scramble">拼写乱序</string>
+    <string name="level_understand">理解</string>
+    <string name="level_remember">记忆</string>
+    <string name="level_spell">拼写</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="add_word_pair">添加单词对</string>
+    <string name="save">保存</string>
+    <string name="word_list_saved">词表已保存</string>
+    <string name="delete_word_list">删除词表</string>
+    <string name="delete_word_list_confirmation">确定要删除这个词表吗？此操作无法撤销。</string>
+    <string name="unsaved_changes">未保存的更改</string>
+    <string name="unsaved_changes_message">你有未保存的更改。确定要放弃这些更改吗？</string>
+    <string name="discard">放弃</string>
+    <string name="stay">留下</string>
+    <string name="cancel">取消</string>
+    <string name="back">返回</string>
+    <string name="close">关闭</string>
+    <string name="more_information">更多信息</string>
+    <string name="more_options">更多选项</string>
+    <string name="no_words_to_practice">没有可练习的单词</string>
+    <string name="flip">翻面</string>
+    <string name="incorrect">答错</string>
+    <string name="correct">答对</string>
+    <string name="enable_audio">开启语音</string>
+    <string name="disable_audio">关闭语音</string>
+    <string name="tts_error_title">语音不可用</string>
+    <string name="tts_error_engine_not_installed">设备上未安装文字转语音引擎。</string>
+    <string name="tts_error_language_missing">缺少该语言的语音数据。</string>
+    <string name="tts_error_language_not_supported">已安装的语音引擎不支持该语言。</string>
+    <string name="tts_action_open_settings">打开设置</string>
+    <string name="tts_action_install_data">安装语言数据</string>
+    <string name="practice_complete">完成</string>
+    <string name="great_job">做得好！</string>
+    <string name="good_effort">不错！</string>
+    <string name="keep_practicing">继续加油！</string>
+    <string name="practice_again">再练一次</string>
+    <string name="back_to_home">返回首页</string>
+    <string name="results_correct">正确</string>
+    <string name="results_incorrect">错误</string>
+    <string name="results_total">总计</string>
+    <string name="skip">跳过</string>
+    <string name="loading_suggestions">正在加载建议…</string>
+    <string name="enter_list_name_first">请先输入词表名称以开始添加单词</string>
+    <string name="swipe_up_to_practice">上滑开始练习</string>
+
+    <!-- Language roles (which side of a pair is which) -->
+    <string name="language_role_known">我认识</string>
+    <string name="language_role_learning">我正在学</string>
+    <string name="swap_languages">交换语言</string>
+
+    <!-- Camera/Scanning -->
+    <string name="scan_word_pairs">用相机扫描单词对</string>
+    <string name="camera_capture">拍摄图片</string>
+    <string name="scan_start">扫描</string>
+    <string name="scan_select_hint">拖动四角框住要扫描的单词</string>
+    <string name="camera_permission_required">需要相机权限</string>
+    <string name="camera_permission_rationale">需要相机权限才能从图片中扫描词表。</string>
+    <string name="grant_permission">授予权限</string>
+    <string name="extracting_word_pairs">正在提取单词对…</string>
+    <string name="scan_lines_read">已读取 %1$d / %2$d 行</string>
+    <string name="scan_added_pairs">已添加 %1$d 个单词对。方向反了？</string>
+    <string name="scan_swap_action">交换这些</string>
+    <string name="scan_pick_languages">选择两种语言，以便翻译和练习正常工作。</string>
+
+    <!-- Import -->
+    <string name="import_word_pairs">导入单词对</string>
+    <string name="select_file">选择文件</string>
+    <string name="select_csv_or_excel">选择一个 CSV 文件以导入单词对</string>
+    <string name="column_mapping">列映射</string>
+    <string name="import_progress">正在导入…</string>
+    <string name="first_row_is_header">第一行为表头</string>
+    <string name="import_button">导入</string>
+    <string name="importing_word_pairs">正在导入单词对…</string>
+    <string name="import_error_invalid_file">无法读取文件。请选择有效的 CSV 文件。</string>
+    <string name="import_error_empty_file">所选文件为空或没有可导入的数据。</string>
+    <string name="import_error_single_column">文件至少需要 2 列才能导入单词对。</string>
+    <string name="import_error_same_columns">请选择两个不同的列。</string>
+
+    <!-- Export -->
+    <string name="export_word_lists">导出词表</string>
+    <string name="export_success">导出成功：%1$s</string>
+    <string name="export_error">导出失败：%1$s</string>
+
+    <!-- Share -->
+    <string name="share_word_lists">分享词表</string>
+    <string name="share_chooser_title">分享词表</string>
+    <string name="share_error">分享失败：%1$s</string>
+    <string name="share_no_app">没有可用于分享文件的应用</string>
+
+    <!-- Import word lists (whole lists) -->
+    <string name="import_word_lists">导入词表</string>
+    <string name="import_success">成功导入 %1$d 个词表</string>
+    <string name="import_error">导入失败：%1$s</string>
+    <string name="import_error_not_voclet">该文件不是 Voclet 词表</string>
+    <string name="parsing_import_file">正在读取文件…</string>
+    <string name="importing_word_lists">正在导入词表…</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_tts">文字转语音</string>
+    <string name="settings_tts_info">Voclet 使用系统自带的文字转语音语音进行朗读。以下是免费开源的 TTS 语音：</string>
+    <string name="settings_tts_espeak" translatable="false">eSpeak-NG</string>
+    <string name="settings_tts_rhvoice" translatable="false">RHVoice</string>
+    <string name="settings_tts_espeak_url" translatable="false">https://github.com/espeak-ng/espeak-ng</string>
+    <string name="settings_tts_rhvoice_url" translatable="false">https://github.com/RHVoice/RHVoice</string>
+    <string name="settings_tts_open_system_settings">打开系统设置</string>
+    <string name="settings_tts_system">系统文字转语音</string>
+    <string name="settings_tts_system_summary_unknown">管理引擎及其语音</string>
+    <string name="settings_tts_active_engine">当前引擎：%1$s</string>
+    <string name="settings_tts_enabled_by_default">默认开启文字转语音</string>
+    <string name="settings_tts_enabled_by_default_summary">练习时默认朗读单词</string>
+    <string name="settings_tts_language_overrides">语言变体</string>
+    <string name="settings_tts_language_overrides_info">为每种语言选择地区口音以用于语音朗读。</string>
+    <string name="settings_tts_variant_standard">默认</string>
+    <string name="settings_tts_variants_summary_none">无</string>
+    <string name="settings_tts_variants_summary_one">%1$s → %2$s</string>
+    <string name="settings_tts_variants_summary_many">已自定义 %1$d 种语言</string>
+    <string name="settings_ai">AI 助手</string>
+    <string name="settings_ai_info">相机导入和翻译提示需要 AI。可以设置云端 AI、下载设备端模型，或两者都设置。两者都设置时，Voclet 使用云端，离线时自动回退到设备端模型。</string>
+    <string name="settings_ai_local">设备端 AI</string>
+    <string name="settings_ai_local_info">在设备本地完全离线运行。数据不会离开平板，但模型比云端模型小得多，因此效果较弱。模型在使用时会驻留内存，较大的模型需要大量 RAM，而不仅仅是存储空间。</string>
+    <string name="settings_ai_local_feature_line">%1$s · %2$s</string>
+    <string name="settings_ai_section_text">翻译</string>
+    <string name="settings_ai_section_text_info">输入时提供翻译建议。这些模型仅处理文本，并根据其支持的语言挑选。</string>
+    <string name="settings_ai_section_page_reader">相机导入</string>
+    <string name="settings_ai_section_page_reader_info">在本设备上从词汇表页面的照片中读取单词。一次下载，无需选择——可在任何手机或平板上运行。</string>
+    <string name="settings_ai_page_reader_size">%1$s 下载</string>
+    <string name="settings_ai_section_recommended">推荐 %1$s</string>
+    <string name="settings_ai_device_ram">此设备内存为 %1$s。</string>
+    <string name="settings_ai_cloud_summary_ready">%1$s · %2$s</string>
+    <string name="settings_ai_cloud_summary_missing">未设置——没有 API 密钥</string>
+    <string name="settings_ai_status_configured_description">已设置</string>
+    <string name="settings_ai_status_missing_description">未设置</string>
+    <string name="settings_ai_recommended">推荐</string>
+    <string name="settings_ai_status_ready">就绪</string>
+    <string name="settings_ai_status_not_downloaded">未下载</string>
+    <string name="settings_ai_status_downloading">正在下载… %1$d%%</string>
+    <string name="settings_ai_status_downloading_indeterminate">正在下载…</string>
+    <string name="settings_ai_status_failed">下载失败</string>
+    <string name="settings_ai_download">下载</string>
+    <string name="settings_ai_replace_title">替换当前模型？</string>
+    <string name="settings_ai_replace_message">每个功能只保留一个模型。下载 %1$s 将删除 %2$s。是否继续？</string>
+    <string name="settings_ai_large_download_warning">这是一个较大的下载（%1$s）。建议使用 Wi-Fi 连接。</string>
+    <string name="settings_ai_model_requirements">%1$s 下载 · 适用于内存 %2$s 及以上的设备</string>
+    <string name="settings_ai_not_enough_ram">超出此设备的内存</string>
+    <string name="settings_ai_ram_warning">该模型适用于内存为 %1$s 的设备，而此设备内存为 %2$s。它仍可使用，但速度较慢，且加载时 Android 可能会关闭你的其他应用。</string>
+    <string name="settings_ai_delete_title">删除模型？</string>
+    <string name="settings_ai_delete_message">%1$s（%2$s）将从此设备中移除。你可以稍后再次下载。</string>
+    <string name="ai_download_notification_title">正在下载 AI 模型</string>
+    <string name="ai_download_channel_name">AI 模型下载</string>
+    <string name="settings_ai_cloud">云端 AI</string>
+    <string name="settings_ai_cloud_info">云端 AI 使用你自己的账户和你选择的提供商。Voclet 没有自己的服务器和密钥：选择提供商，粘贴你从他们那里获取的密钥，请求将直接从本设备发往他们。</string>
+    <string name="settings_ai_cloud_provider">提供商</string>
+    <string name="settings_ai_cloud_provider_gemini">Google Gemini</string>
+    <string name="settings_ai_cloud_provider_groq">Groq</string>
+    <string name="settings_ai_cloud_provider_openrouter">OpenRouter</string>
+    <string name="settings_ai_cloud_provider_mistral">Mistral</string>
+    <string name="settings_ai_cloud_provider_custom">自定义（兼容 OpenAI）</string>
+    <string name="settings_ai_cloud_provider_help_gemini">在 aistudio.google.com/apikey 免费获取密钥。</string>
+    <string name="settings_ai_cloud_provider_help_groq">在 console.groq.com/keys 免费获取密钥。</string>
+    <string name="settings_ai_cloud_provider_help_openrouter">在 openrouter.ai/keys 获取密钥——一个密钥可用多个模型。</string>
+    <string name="settings_ai_cloud_provider_help_mistral">在 console.mistral.ai 获取密钥。</string>
+    <string name="settings_ai_cloud_provider_help_custom">任何支持 OpenAI 聊天补全 API 的服务，包括本地 Ollama 服务器。</string>
+    <string name="settings_ai_cloud_api_key">API 密钥</string>
+    <string name="settings_ai_cloud_api_key_placeholder">粘贴你的密钥</string>
+    <string name="settings_ai_cloud_api_key_show">显示密钥</string>
+    <string name="settings_ai_cloud_api_key_hide">隐藏密钥</string>
+    <string name="settings_ai_cloud_api_key_info">仅存储在本设备上，以未加密形式保存。它会发送给你上方选择的提供商，不会发送给其他人。</string>
+    <string name="settings_ai_cloud_base_url">API 基础地址</string>
+    <string name="settings_ai_cloud_model">模型</string>
+    <string name="settings_ai_cloud_advanced">端点和模型</string>
+    <string name="settings_ai_cloud_field_default_hint">留空以使用提供商的默认值。</string>
+    <string name="settings_ai_cloud_custom_fields_hint">自定义端点两者都需要填写。</string>
+    <string name="settings_ai_cloud_base_url_placeholder">https://your-server/v1/</string>
+    <string name="settings_ai_cloud_model_placeholder">来自你提供商的模型 ID</string>
+    <string name="settings_ai_cloud_model_vision_hint">相机导入需要一个能读取图片的模型。</string>
+    <string name="settings_ai_cloud_model_default_in_use">正在使用提供商默认值：%1$s</string>
+    <string name="settings_ai_cloud_missing_key">粘贴 API 密钥以启用云端 AI。</string>
+    <string name="ai_no_backend_available">尚未设置 AI。请在“设置”中添加云端 API 密钥或下载设备端模型。</string>
+    <string name="ai_offline_no_local_model">无网络连接。请在“设置”中下载设备端模型以离线使用 AI。</string>
+    <string name="ai_extract_failed">无法处理图片。请重试。</string>
+    <string name="ai_extract_no_pairs">未在图片中找到单词对。</string>
+    <string name="ai_local_loading">设备端模型仍在加载。首次加载最慢——请稍后重试。</string>
+    <string name="ai_local_timeout">设备端 AI 响应时间过长。它比云端 AI 慢得多——请重试，或在“设置”中设置云端 AI。</string>
+    <string name="ai_local_load_failed">设备端模型无法加载。请在“设置”中重新下载。</string>
+    <string name="ai_scan_retry">重试</string>
+    <string name="ai_scan_retake">重新拍照</string>
+    <string name="ai_first_use_hint">AI 翻译提示和相机导入已可用——请在“设置”中设置模型。</string>
+    <string name="ai_first_use_hint_action">设置 AI</string>
+    <string name="settings_interface">界面</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_system">跟随系统</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">深色</string>
+    <string name="settings_data">数据</string>
+    <string name="delete_all_stats">删除统计数据</string>
+    <string name="delete_all_stats_summary_empty">未存储统计数据</string>
+    <plurals name="delete_all_stats_summary">
+        <item quantity="other">已存储 %1$d 条结果</item>
+    </plurals>
+    <string name="delete_all_stats_title">删除所有统计数据？</string>
+    <string name="delete_all_stats_confirmation">确定要删除所有练习统计数据吗？这将重置所有进度跟踪，且无法撤销。</string>
+    <string name="delete_all_stats_success">所有统计数据已成功删除</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_about_acknowledgements">致谢</string>
+    <string name="app_version">版本 %1$s</string>
+    <string name="app_description">一款通过有趣而高效的练习模式帮助你掌握新单词的词汇学习应用。</string>
+    <string name="open_source">免费开源软件</string>
+    <string name="donations_welcome">欢迎捐赠以支持持续开发</string>
+    <string name="attributions">所有国旗 emoji 由 OpenMoji 设计——开源 emoji 与图标项目。许可：CC BY-SA 4.0\n\nNunito Sans 和 Sniglet 字体由各自作者提供。许可：SIL 开放字体许可 1.1</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="privacy_policy_url" translatable="false">https://raw.githubusercontent.com/mwiest/voclet/main/PRIVACY_POLICY.md</string>
+</resources>
