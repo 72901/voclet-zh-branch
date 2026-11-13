@@ -1,3 +1,9 @@
+/*
+ * Modified in the non-official Chinese fork "沃莱单词·中文分支" (voclet-zh-branch).
+ * Changes: TTS speaks the English front face on first load, flip-back, next card and reset;
+ * deleteCurrentWord() permanently removes the current pair from the word list.
+ * Original: Copyright 2024 Marc Wiest, licensed under Apache License 2.0.
+ */
 package com.github.mwiest.voclet.ui.practice
 
 import androidx.lifecycle.SavedStateHandle
@@ -80,6 +86,9 @@ class FlashcardPracticeViewModel @Inject constructor(
                     isLoading = false
                 )
             }
+
+            // Read the first card's target-language word (word2) aloud when it appears.
+            speakFrontWord(_uiState.value)
         }
     }
 
@@ -91,14 +100,21 @@ class FlashcardPracticeViewModel @Inject constructor(
             state.copy(isFlipped = willBeFlipped)
         }
 
-        // Speak word2 when flipping to the back side
-        if (willBeFlipped) {
-            val currentPair = currentState.wordPairs.getOrNull(currentState.currentCardIndex)
-            if (currentPair != null) {
-                val languageCode = currentState.languageMap[currentPair.wordListId] ?: "en"
-                ttsDelegate.speak(currentPair.word2, languageCode)
-            }
+        // The front face shows the target-language word (word2, e.g. English) and is read
+        // aloud. When flipping back to the front, speak that word again.
+        if (!willBeFlipped) {
+            speakFrontWord(currentState)
         }
+    }
+
+    /**
+     * Read the current card's target-language word (word2) aloud. The front face of the
+     * flashcard now displays this word, so speaking it teaches recognition of the word.
+     */
+    private fun speakFrontWord(state: FlashcardPracticeUiState) {
+        val currentPair = state.wordPairs.getOrNull(state.currentCardIndex) ?: return
+        val languageCode = state.languageMap[currentPair.wordListId] ?: "en"
+        ttsDelegate.speak(currentPair.word2, languageCode)
     }
 
     fun markCorrect() {
@@ -117,6 +133,38 @@ class FlashcardPracticeViewModel @Inject constructor(
             }
 
             moveToNext()
+        }
+    }
+
+    fun deleteCurrentWord() {
+        viewModelScope.launch {
+            val currentState = _uiState.value
+            val currentPair = currentState.wordPairs.getOrNull(currentState.currentCardIndex)
+
+            if (currentPair != null) {
+                repository.deleteWordPair(currentPair)
+            }
+
+            _uiState.update { state ->
+                val remaining = state.wordPairs.filterIndexed { index, _ ->
+                    index != state.currentCardIndex
+                }
+                state.copy(
+                    wordPairs = remaining,
+                    isFlipped = false,
+                    // The next word slides into the current slot; with none left, finish.
+                    practiceComplete = remaining.isEmpty(),
+                    currentCardIndex = if (state.currentCardIndex >= remaining.size) {
+                        (remaining.size - 1).coerceAtLeast(0)
+                    } else {
+                        state.currentCardIndex
+                    }
+                )
+            }
+
+            // Read the next card's target-language word aloud.
+            val state = _uiState.value
+            if (!state.practiceComplete) speakFrontWord(state)
         }
     }
 
@@ -151,6 +199,10 @@ class FlashcardPracticeViewModel @Inject constructor(
                 state.copy(currentCardIndex = nextIndex)
             }
         }
+
+        // Read the next card's target-language word aloud if practice continues.
+        val state = _uiState.value
+        if (!state.practiceComplete) speakFrontWord(state)
     }
 
     fun resetPractice() {
@@ -164,5 +216,7 @@ class FlashcardPracticeViewModel @Inject constructor(
                 wordPairs = state.wordPairs.shuffled()
             )
         }
+        // Read the first card's target-language word aloud again.
+        speakFrontWord(_uiState.value)
     }
 }
