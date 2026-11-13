@@ -30,7 +30,8 @@ More screenshots, for phone and tablet, are in the
 - **Your data stays yours:** everything is stored on the device; lists export and share as
   `.voclet.json` files; pairs import from CSV.
 - **Thirteen languages** for word lists and for the app itself: English, German, French, Spanish,
-  Portuguese, Italian, Dutch, Polish, Swedish, Norwegian, Danish, Finnish, Hungarian.
+  Portuguese, Italian, Dutch, Polish, Swedish, Norwegian, Danish, Finnish, Hungarian. The user
+  interface is additionally available in Chinese.
 
 The full description of every screen is in [`docs/product.md`](docs/product.md).
 
